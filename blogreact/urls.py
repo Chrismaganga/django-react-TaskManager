@@ -5,11 +5,11 @@ from todo import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'tasks',views.TodoView, 'task')
+router.register('tasks',views.TodoView, 'task')
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-	path('api/', include(router.urls))
-
+	path('api/', include(router.urls)),
+    # path('api-auth/', include('restframework.urls')),
 
 ]

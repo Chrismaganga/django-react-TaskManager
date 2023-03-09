@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from 'axios';
+import Footer from "./components/Footer";
 
 // create a class that extends the component
 class App extends Component {
@@ -35,7 +36,7 @@ componentDidMount() {
 
 refreshList = () => {
 	axios //Axios to send and receive HTTP requests
-	.get("http://localhost:8000/api/tasks/")
+	.get("http://127.0.0.1:8000/api/tasks/")
 	.then(res => this.setState({ taskList: res.data }))
 	.catch(err => console.log(err));
 };
@@ -120,13 +121,13 @@ handleSubmit = (item) => {
 	if (item.id) {
 	// if old post to edit and submit
 	axios
-		.put(`http://localhost:8000/api/tasks/${item.id}/`, item)
+		.put(`http://localhost/api/tasks/${item.id}/`, item)
 		.then((res) => this.refreshList());
 	return;
 	}
 	// if new post to submit
 	axios
-	.post("http://localhost:8000/api/tasks/", item)
+	.post("http://localhost/api/tasks/", item)
 	.then((res) => this.refreshList());
 };
 
@@ -134,7 +135,7 @@ handleSubmit = (item) => {
 handleDelete = (item) => {
 	alert("delete" + JSON.stringify(item));
 	axios
-	.delete(`http://localhost:8000/api/tasks/${item.id}/`)
+	.delete(`http://localhost/api/tasks/${item.id}/`)
 	.then((res) => this.refreshList());
 };
 
@@ -144,18 +145,18 @@ createItem = () => {
 	this.setState({ activeItem: item, modal: !this.state.modal });
 };
 
-//Edit item
+
 editItem = (item) => {
 	this.setState({ activeItem: item, modal: !this.state.modal });
 };
 
-// Start by visual effects to viewer
+
 render() {
 	return (
 	<main className="content">
-		<h1 className="text-success text-uppercase text-center my-4">
-		GFG Task Manager
-		</h1>
+		<h3 className="text-success text-uppercase text-center my-4">
+		Task Manager@2023
+		</h3>
 		<div className="row ">
 		<div className="col-md-6 col-sm-10 mx-auto p-0">
 			<div className="card p-3">
@@ -178,6 +179,7 @@ render() {
 			onSave={this.handleSubmit}
 		/>
 		) : null}
+		<Footer/>
 	</main>
 	);
 }
