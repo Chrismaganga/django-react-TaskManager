@@ -1,1 +1,1 @@
-# django-react-blog1111-
+# django & React
