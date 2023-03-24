@@ -3,6 +3,13 @@ import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from 'axios';
 import Footer from "./components/Footer";
+import styled from 'styled-components';
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import SignUp from "./pages/SignUp";
+import { BrowserRouter as Router, Routes,   Route } from 'react-router-dom';
 
 // create a class that extends the component
 class App extends Component {
@@ -153,10 +160,22 @@ editItem = (item) => {
 
 render() {
 	return (
-	<main className="content">
-		<h3 className="text-success text-uppercase text-center my-4">
-		Task Manager@2023
-		</h3>
+		<>
+		<Wrap>
+      <Router>
+        <Navbar/>
+	
+       
+        <Routes>
+          <Route path="/" element={ <Home/>} />
+          <Route path="/sign-up" element={ <SignUp/>} />
+          <Route path="/Blog" element={ <Blog/>} />
+          <Route path="/About" element={ <About/>} />
+        
+        </Routes>
+      </Router>
+	  
+		<Main>
 		<div className="row ">
 		<div className="col-md-6 col-sm-10 mx-auto p-0">
 			<div className="card p-3">
@@ -179,9 +198,31 @@ render() {
 			onSave={this.handleSubmit}
 		/>
 		) : null}
-		<Footer/>
-	</main>
+		
+	</Main>
+	<Footer/>
+	</Wrap>
+	</>
 	);
 }
 }
 export default App;
+
+const Main = styled.div`
+width: 150vh;
+height: 70vh;
+background-color: lightyellow;
+justify-content: flex-start;
+-ms-content-zoom-limit-max
+
+`
+
+const Wrap = styled.div`
+justify-content: flex-start;
+flex: 1rem;
+width: max-content;
+height: max-content;
+justify-content: baseline;
+
+
+`
