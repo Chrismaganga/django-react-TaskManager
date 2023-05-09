@@ -16,7 +16,7 @@ dbus-python==1.2.18
 defer==1.0.6
 distro==1.7.0
 distro-info===1.1build1
-Django==4.1.6
+Django==4.1.9
 djangorestframework==3.14.0
 duplicity==0.8.21
 fasteners==0.14.1
